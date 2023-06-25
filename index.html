@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+    <head> 
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik&display=swap" rel="stylesheet"> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">   
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="icon" href="../TP1- Orlando-Tamanaha v.2/img/ico/favicon_ulala.png">
+        <title>Parcial ADM - Orlando-Tamanaha</title>
+    </head>
+  <body>
+
+    <!-- Menú -->
+    <header> 
+        <nav class="container-fluid navbar navbar-expand-lg">    
+            <div class="container">                
+                <a class="navbar-brand" href="./index.html">
+                   <img src="img/logo/logo_ulala.png" alt="Logo ulaula" width="50" height="50" class="d-inline-block align-text-top">
+                </a>               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                </button>                
+                <div class="collapse navbar-collapse justify-content-end" id="navbarScroll">  
+                    <ul class="navbar-nav text-center">  
+                        <li class="nav-item">
+                         <a class="nav-link" href="./index.html">Catálogo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./views/carrito.html">Carrito</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>           
+        </nav> 
+    </header>
+
+
+    <main>
+        <section class="shop app">
+            <div class="container"> 
+                <div class="row py-5"> 
+                    <div class="col-lg-8 m-auto text-center mb-5">
+                        <h1 class="titulo">Tu Tienda OnLine</h1>   
+                        <h2 class="subtitulo">Envios a todo el país</h2>
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <div>
+                                <select v-on:change="cambio" v-model="selectCat" class="form-select" name="Categorias">
+                                    <option disabled selected>Selecciona una opción</option>
+                                    <option value="4">Ver Todo</option>
+                                    <option value="1">Blusas</option>
+                                    <option value="2">Vestidos</option>
+                                    <option value="3">Remeras</option>
+                                    
+                                </select>
+                            </div>
+    
+                            <!-------------------- Agregar -->
+                            <div class="form-check form-switch ms-3">
+                                <input v-on:click="mostrarForm" type="checkbox" class="form-check-input" id="check1"
+                                    v-model="form">  
+                                <label for="check1" class="form-check-label">Agregar Pedido</label>   
+                            </div>
+
+                        </div>
+    
+                            <!---------------------- Formulario -->
+                            
+                            
+                            <div
+                            v-bind:class="{'d-none justify-content-center mt-5' : form==false, 'd-flex justify-content-center mt-5' : form}">
+                            <div class="card p-3 w-75" action="">
+                            
+                                <estructura-planilla></estructura-planilla>
+                                
+                               
+                            
+                            </div>
+                        </div>
+
+                    </div>
+                        <!---------------------- Cards -->
+                    <div class="row">
+                        <div class="col-lg-3 text-center mb-4" v-for="(indumentaria, index) in filtroCategoria">
+                            <div class="card border-0 bg-light mb-2">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <a href="#">
+                                        <img v-bind:src="indumentaria.imagen" class="img-fluid" alt="indumentaria.img_alt">
+                                        <h3 class="h4">{{indumentaria.modelo}}</h3>
+                                        <p>${{indumentaria.precio}}</p>
+                                    </a>
+
+                                    <div class="d-flex flex-column justify-content-between" style="height: 140px;">
+                                        <div class="boton_carrito" >
+                                            <button v-on:click="agregarCarrito(indumentaria)" class="btn btn button">Añadir a
+                                            Carrito</button>
+                                        </div>                                           
+                                    </div> 
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="./libs/vue.js"></script>
+    <script src="./js/app.js"></script>
+
+  </body>
+
+</html>
